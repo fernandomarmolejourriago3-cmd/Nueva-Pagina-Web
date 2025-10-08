@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Docencia</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #4a68d1;
+      color: white;
+      padding: 15px;
+    }
+
+    section {
+      margin: 40px;
+    }
+
+    footer {
+      background-color: #333;
+      color: white;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* --- Imagen principal --- */
+    .perfil {
+      width: 250px;
+      border-radius: 50%;
+      margin-top: 20px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+    }
+
+    /* --- Pestañas --- */
+    .tab-container {
+      width: 80%;
+      margin: 40px auto;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+    }
+
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      border-bottom: 2px solid #ddd;
+      background-color: #f1f1f1;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .tab-buttons button {
+      background-color: inherit;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 30px;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+
+    .tab-buttons button:hover {
+      background-color: #ddd;
+    }
+
+    .tab-buttons button.active {
+      background-color: #4a68d1;
+      color: white;
+      border-radius: 10px 10px 0 0;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* --- Chatbot --- */
+    .chatbot-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 28px;
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 10px;
+      z-index: 9999;
+    }
+
+    .chatbot-frame {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 400px;
+      height: 500px;
+      border: none;
+      border-radius: 12px;
+      box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 15px;
+      z-index: 9999;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Asesorías Docencia</h1>
+  </header>
+
+  <section>
+    <h2>Sobre mí</h2>
+    <p>Hola, soy el instructor <b>Fernando Marmolejo Urriago</b>. En este portal podrás escribir todas las inquietudes sobre temas acerca de las sesiones sincrónicas.</p>
+
+    <!-- Imagen principal -->
+    <img src="yo.jpg" alt="Foto del instructor" class="perfil">
+
+    <!-- Pestañas -->
+    <div class="tab-container">
+      <div class="tab-buttons">
+        <button class="tab-link active" onclick="openTab(event, 'tab1')">🎥 Video</button>
+        <button class="tab-link" onclick="openTab(event, 'tab2')">📊 Power BI</button>
+        <button class="tab-link" onclick="window.location.href='https://tu-enlace-externo.com'">🌐 Ir a otra página</button>
+      </div>
+
+      <div id="tab1" class="tab-content active">
+        <h3>Mi video favorito</h3>
+        <iframe src="https://www.youtube.com/embed/_PhBKHAHeT0" title="Bienvenidos" allowfullscreen></iframe>
+      </div>
+
+      <div id="tab2" class="tab-content">
+        <h3>Informe Power BI</h3>
+        <iframe title="FASES DE FICHAS"
+                src="https://app.powerbi.com/view?r=eyJrIjoiZjNkMjI2NTYtZmQxMS00MzIzLWI1NWYtNmQyZmI3OTdiOWFjIiwidCI6ImNiYzJjMzgxLTJmMmUtNGQ5My05MWQxLTUwNmM5MzE2YWNlNyIsImMiOjR9"
+                allowFullScreen="true">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © fmarmolejo@sena.edu.co
+  </footer>
+
+  <!-- Chatbot -->
+  <button onclick="toggleChat()" class="chatbot-btn">💬</button>
+  <iframe frameborder="0" id="chatbot" src="https://bb737e0478f3e5d6f5.gradio.live/" class="chatbot-frame"></iframe>
+
+  <script>
+    // Control de pestañas
+    function openTab(evt, tabName) {
+      const contents = document.querySelectorAll('.tab-content');
+      const links = document.querySelectorAll('.tab-link');
+      contents.forEach(c => c.classList.remove('active'));
+      links.forEach(l => l.classList.remove('active'));
+      document.getElementById(tabName).classList.add('active');
+      evt.currentTarget.classList.add('active');
+    }
+
+    // Mostrar/Ocultar chatbot
+    function toggleChat() {
+      const frame = document.getElementById("chatbot");
+      frame.style.display = (frame.style.display === "none" || frame.style.display === "")
+                            ? "block" : "none";
+    }
+  </script>
+
+</body>
+</html>
